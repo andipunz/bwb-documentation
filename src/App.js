@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {SocketProvider} from "./SocketProvider";
+import {Documentation} from "./Documentation";
+import {BrowserRouter} from "react-router-dom";
+
+const jwt = process.env.REACT_APP_JWT
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log(jwt)
+    return (
+        <BrowserRouter>
+        <SocketProvider wsUrl='wss://api.services.bergwacht-bayern.org/socket' options={{token: jwt}}>
+            <div id="fullscreen">
+                <a className="back-button" href="https://passport.services.bergwacht-bayern.org">
+                    <i className="fa fa-arrow-left"></i>
+                </a>
+
+                <a href="https://passport.services.bergwacht-bayern.org"><img
+                    src="https://passport.services.bergwacht-bayern.org/public/framed-logo.svg"
+                    className="logo"
+                    style={{position: "absolute", top: 0, right: 0, zIndex: 101}}/></a>
+                <Documentation/>
+            </div>
+        </SocketProvider>
+        </BrowserRouter>);
 }
 
 export default App;
