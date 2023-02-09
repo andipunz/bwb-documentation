@@ -3,31 +3,31 @@ import './App.css';
 
 function TableRows({ rows, onValUpdate }) {
     return rows.map((rowsData, index) => {
-        const { time, message, from, to, action } = rowsData;
+        const { name, unit, heli, winch, rope, special } = rowsData;
         return (
             <tr key={index}>
                 <td>
                     <input
-                        type="datetime-local"
-                        value={time}
+                        type="text"
+                        value={name}
                         onChange={(event) => onValUpdate(index, event)}
-                        name="time"
+                        name="name"
                         className="form-control"
                     />
                 </td>
                 <td>
                     <input
                         type="text"
-                        value={message}
+                        value={unit}
                         onChange={(event) => onValUpdate(index, event)}
-                        name="message"
+                        name="unit"
                         className="form-control"
                     />
                 </td>
                 <td>
                     <input
-                        type="text"
-                        value={from}
+                        type="checkbox"
+                        value={heli}
                         onChange={(event) => onValUpdate(index, event)}
                         name="from"
                         className="form-control"
@@ -35,19 +35,28 @@ function TableRows({ rows, onValUpdate }) {
                 </td>
                 <td>
                     <input
-                        type="text"
-                        value={to}
+                        type="checkbox"
+                        value={winch}
                         onChange={(event) => onValUpdate(index, event)}
-                        name="to"
+                        name="winch"
+                        className="form-control"
+                    />
+                </td>
+                <td>
+                    <input
+                        type="checkbox"
+                        value={rope}
+                        onChange={(event) => onValUpdate(index, event)}
+                        name="rope"
                         className="form-control"
                     />
                 </td>
                 <td>
                     <input
                         type="text"
-                        value={action}
+                        value={special}
                         onChange={(event) => onValUpdate(index, event)}
-                        name="action"
+                        name="special"
                         className="form-control"
                     />
                 </td>
@@ -57,20 +66,22 @@ function TableRows({ rows, onValUpdate }) {
 }
 function Table() {
     const [rows, initRow] = useState([{
-        time: new Date().toISOString().slice(0, -8),
-        message: "",
-        from: "",
-        to: "",
-        action: "",
+        name: "",
+        unit: "",
+        heli: false,
+        winch: false,
+        rope: false,
+        special: "",
     }]);
     const addRowTable = (event) => {
         event.preventDefault();
         const data = {
-            time: new Date().toISOString().slice(0, -8),
-            message: "",
-            from: "",
-            to: "",
-            action: "",
+            name: "",
+            unit: "",
+            heli: false,
+            winch: false,
+            rope: false,
+            special: "",
         };
         initRow([...rows, data]);
     };
@@ -79,18 +90,19 @@ function Table() {
         console.log(value);
         const data = [...rows];
         data[i][name] = value;
-        initRow([...data.sort((a, b) => new Date(a['time']) - new Date(b['time']))]);
+        initRow([...data]);
     };
     return (
         <>
             <table style={{ width: "95%" }}>
                 <thead>
                     <tr>
-                        <th style={{ width: "20%" }}>Uhrzeit</th>
-                        <th style={{ width: "20%" }}>Aktion / Meldung</th>
-                        <th style={{ width: "20%" }}>Von</th>
-                        <th style={{ width: "20%" }}>An</th>
-                        <th style={{ width: "20%" }}>Maßnahmen</th>
+                        <th style={{ width: "20%" }}>Name</th>
+                        <th style={{ width: "20%" }}>Bergwacht</th>
+                        <th style={{ width: "10%" }}>Mitflug</th>
+                        <th style={{ width: "10%" }}>Winde</th>
+                        <th style={{ width: "10%" }}>Tau</th>
+                        <th style={{ width: "30%" }}>Spezialeinsatzkraft</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -108,7 +120,7 @@ function Table() {
 }
 
 
-export const Protocol = () => {
+export const Members = () => {
 
     return (
         <form>

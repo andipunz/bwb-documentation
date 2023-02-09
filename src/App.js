@@ -14,11 +14,6 @@ function App() {
                 <a className="back-button" href="https://passport.services.bergwacht-bayern.org">
                     <i className="fa fa-arrow-left"></i>
                 </a>
-
-                <a href="https://passport.services.bergwacht-bayern.org"><img
-                    src="https://passport.services.bergwacht-bayern.org/public/framed-logo.svg"
-                    className="logo"
-                    style={{position: "absolute", top: 0, right: 0, zIndex: 101}}/></a>
                 <Documentation/>
             </div>
         </SocketProvider>

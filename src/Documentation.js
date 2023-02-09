@@ -47,7 +47,7 @@ export const Documentation = () => {
 
     // pushing messages to the channel
     useEffect(() => {
-        broadcast('catchup', {replay: '2023-01-21'});
+        broadcast('catchup', {replay: '2023-01-28'});
     }, [broadcast]);
     // here, we only push to the channel once on initial render
     // but when you push to the channel will vary across use cases

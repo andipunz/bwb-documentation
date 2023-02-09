@@ -7,6 +7,7 @@ import { Data } from './Data';
 import { Resources } from './Resources';
 import { Protocol } from './Protocol';
 import { Tabs, Tab, TabList, TabPanel } from 'react-tabs';
+import { Members } from './Members';
 
 export const Details = ({ events }) => {
     let { id } = useParams();
@@ -42,7 +43,7 @@ export const Details = ({ events }) => {
                     <h2>Any content 1</h2>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                    <Members />
                 </TabPanel>
                 <TabPanel>
                     <Resources event={event} />
